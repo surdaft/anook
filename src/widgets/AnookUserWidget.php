@@ -18,7 +18,7 @@ class AnookUserWidget extends BaseWidget
     public function __construct()
     {
         $widget_options = [
-            'classname' => 'AnookUserClass',
+            'classname' => get_class(),
             'description' => "Show your anook profile in the sidebar."
         ];
         
@@ -26,7 +26,7 @@ class AnookUserWidget extends BaseWidget
             throw new WidgetException("Static constant WIDGET_NAME is required.");
         }
         
-        parent::__construct('AnookUserClass', self::WIDGET_NAME, $widget_options);
+        parent::__construct(get_class(), self::WIDGET_NAME, $widget_options);
     }
     
     public function widget($args, $widget_data)

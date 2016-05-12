@@ -4,6 +4,6 @@ trait Widget
 {
     public static function register()
     {
-        register_widget("surdaft\anook\widgets\{get_class()}");
+        register_widget("surdaft\anook\widgets\\" . get_class());
     }
 }
