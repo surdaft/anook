@@ -8,7 +8,7 @@ Version: 0.1
 Author URI: http://surdaft.com/
 */
 
-require(__DIR__ . '/autoloader.php');
+require('./autoloader.php');
 
 use surdaft\anook\widgets\AnookUserWidget;
 
