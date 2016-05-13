@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Autoloader example by Php-fig
+ * Modified for our own use.
+ */
 spl_autoload_register(function ($class) {
     // project-specific namespace prefix
     $prefix = 'surdaft\\anook\\';

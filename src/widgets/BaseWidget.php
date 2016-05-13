@@ -2,7 +2,11 @@
 
 use surdaft\anook\interfaces\WidgetInterface;
 
-class BaseWidget extends \WP_Widget implements WidgetInterface
+/**
+ * This base widget extends the initial Wordpress widget that
+ * is required.
+ */
+class BaseWidget extends \WP_Widget
 {
 
 }
