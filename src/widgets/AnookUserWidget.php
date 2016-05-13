@@ -38,7 +38,7 @@ class AnookUserWidget extends BaseWidget
     
     public function form($widget_data)
     {
-        $this->render(self::OPTIONS_TEMPLATE_NAME, $widget_data);
+        echo $this->render(self::OPTIONS_TEMPLATE_NAME, $widget_data);
     }
     
     public function update($new_data, $old_data)
