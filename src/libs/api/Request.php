@@ -11,8 +11,9 @@ class Request
     public $json;
     public $endpoint;
     public $curl_url;
+    public $cached_item;
     
-    public function __construct($api_request_json, $endpoint, $curl_url)
+    public function __construct($api_request_json, $endpoint, $curl_url, $cached_item = false)
     {
         $this->json = $api_request_json;
         
@@ -22,6 +23,9 @@ class Request
         $this->data = $request->data;
         $this->endpoint = $endpoint;
         $this->curl_url = $curl_url;
+        
+        // by default a requests cached_item param is false, as though it is a live request.
+        $this->cached_item = $cached_item;
         
         return $this;
     }
