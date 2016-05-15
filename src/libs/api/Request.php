@@ -6,12 +6,12 @@
  */
 class Request
 {
-    public $code;
-    public $data;
-    public $json;
-    public $endpoint;
-    public $curl_url;
-    public $cached_item;
+    private $code;
+    private $data;
+    private $endpoint;
+    private $cached_item;
+    private $curl_url;
+    private $json;
     
     public function __construct($api_request_json, $endpoint, $curl_url, $cached_item = false)
     {
@@ -30,18 +30,28 @@ class Request
         return $this;
     }
     
-    public function getJson()
+    public function json()
     {
         return $this->json;
     }
     
-    public function getEndpoint()
+    public function endpoint()
     {
         return $this->endpoint;
     }
     
-    public function getCurlUrl()
+    public function curl_url()
     {
         return $this->curl_url;
+    }
+    
+    public function data()
+    {
+        return $this->data;
+    }
+    
+    public function code()
+    {
+        return $this->code;
     }
 }

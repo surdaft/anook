@@ -10,11 +10,9 @@ class TestApi extends BaseTest
 {
     public function testApiQuery()
     {
-        $api_call = Api::query('users/surdaft', ['debug' => true])->curl();
+        $api_call = Api::query('users/surdaft')->curl();
         
         // is it returning a request
         $this->assertTrue(is_a($api_call, 'surdaft\anook\libs\api\Request'));
-        
-        Debug::printExit($api_call);
     }
 }

@@ -67,4 +67,35 @@ class Api
         
         return new Request($return, $this->endpoint, $this->curl_url);
     }
+    
+    public function header($header_key, $header_value)
+    {
+        $this->headers[] = "{$header_key}:{$header_value}";
+        
+        return $this;
+    }
+    
+    public function headers(array $headers)
+    {
+        foreach ($headers as $header_key => $header_value) {
+            $this->header($header_key, $header_value);
+        }
+        
+        return $this;
+    }
+    
+    public static function getUser($username)
+    {
+        return self::query("user/{$username}")->curl();
+    }
+    
+    public static function getNook($nook_id)
+    {
+        return self::query("nook/{$nook_id}")->curl();
+    }
+    
+    public static function getGame($game_id)
+    {
+        return self::query("game/{$game_id}")->curl();
+    }
 }
