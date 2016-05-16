@@ -11,20 +11,6 @@ class BaseWidget extends \WP_Widget implements WidgetInterface
 {
     public function __construct($classname, $widget_name, $widget_options)
     {
-        /**
-         * We require these static constants
-         */
-        if (empty(static::WIDGET_NAME)) {
-            throw new WidgetException("Static constant WIDGET_NAME is required.");
-        }
-        
-        if (empty(static::TEMPLATE_NAME)) {
-            throw new WidgetException("Static constant TEMPLATE_NAME is required.");
-        }
-        
-        if (empty(static::TEMPLATE_NAME)) {
-            throw new WidgetException("Static constant OPTIONS_TEMPLATE_NAME is required.");
-        }
         
         parent::__construct($classname, $widget_name, $widget_options);
     }
@@ -41,7 +27,7 @@ class BaseWidget extends \WP_Widget implements WidgetInterface
         $variables = $this->getData($widget_data);
         
         echo $args['before_widget'];
-        echo $this->render(self::TEMPLATE_NAME, $variables);
+        echo $this->render($this->template_name, $variables);
         echo $args['after_widget'];
     }
     
@@ -51,7 +37,7 @@ class BaseWidget extends \WP_Widget implements WidgetInterface
      */
     public function form($widget_data)
     {
-        echo $this->render(self::OPTIONS_TEMPLATE_NAME, $widget_data);
+        echo $this->render($this->options_template_name, $widget_data);
     }
     
     /**

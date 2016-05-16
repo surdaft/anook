@@ -2,6 +2,10 @@
 
 interface WidgetInterface
 {
+    public $widget_name;
+    public $template_name;
+    public $options_template_name;
+    
     /**
 	 * Outputs the content of the widget
 	 * @param array $args
