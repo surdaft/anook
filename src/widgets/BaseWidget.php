@@ -64,4 +64,16 @@ class BaseWidget extends \WP_Widget implements WidgetInterface
     {
         WidgetsController::update($new_data, $old_data);
     }
+    
+    /**
+     * This function is used within this BaseWidget BUT
+     * it uses the widget it extends getData.
+     * 
+     * @TODO: How would this be better shown as required?
+     * Extend the widget interface with a new one that adds it?
+     */
+    public function getData(array $widget_data)
+    {
+        return $widget_data;
+    }
 }
