@@ -1,7 +1,7 @@
 <?php namespace surdaft\anook\libs\api;
 
 use surdaft\anook\libs\api\Request;
-use surdaft\anook\helpers\Debug;
+use surdaft\anook\Debug;
 
 class Api
 {
@@ -49,6 +49,9 @@ class Api
         return $this;
     }
     
+    /**
+     * Add caching to this
+     */
     public function curl()
     {
         $ch = curl_init($this->curl_url);
