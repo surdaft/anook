@@ -35,7 +35,9 @@ class Anook
      */
     public function initialiseHooks()
     {
-        add_action('widgets_init', 'surdaft\anook\widgets\AnookUserWidget::register');
+        add_action('widgets_init', function() {
+            register_widget('\surdaft\anook\widgets\AnookUserWidget');
+        });
         
         return $this;
     }

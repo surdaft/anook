@@ -1,4 +1,5 @@
-<h2><?= $data['widget-name']; ?></h2>
-<div class="anook anook-user">
-    
+<div class="anook-widget user">
+    <div class="top-logo">
+        <img src="#" height="30px" width="120px">
+    </div>
 </div>

@@ -13,9 +13,15 @@ class WidgetsController extends Controller
      */
     public static function update(array $new_data, array $old_Data)
     {
+        $default = [
+            'username' => 'SurDaft'
+        ];
+        
+        $new_data = array_merge($default, $new_data);
+        
         // loop through widget values and sanitize them.
-        foreach ($new_data as $datA_key => &$data_value) {
-            $data_value = strip_tags($data_value);
+        foreach ($new_data as $data_key => $data_value) {
+            $new_data[$data_key] = strip_tags($data_value);
         }
         
         // return the sanitized data
