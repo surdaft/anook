@@ -3,7 +3,9 @@
 use surdaft\anook\traits\Widget;
 use surdaft\anook\traits\Templates;
 use surdaft\anook\exceptions\WidgetException;
-use sardaft\anook\controllers\WidgetsController;
+use surdaft\anook\controllers\WidgetsController;
+
+use surdaft\anook\libs\api\Api;
 
 /**
  * Anook User Widget
@@ -11,11 +13,10 @@ use sardaft\anook\controllers\WidgetsController;
  */
 class AnookUserWidget extends BaseWidget
 {
-    // use the traits of a widget
-    use Widget;
     // allow us to render template files
     use Templates;
     
+    // the name of the widget
     public $widget_name = "Anook User Widget";
     public $template_name = "widgets.user";
     public $options_template_name = "widget_options.user";
@@ -26,12 +27,9 @@ class AnookUserWidget extends BaseWidget
      */
     public function __construct()
     {
-        $widget_options = [
-            'classname' => get_class(),
+        parent::__construct('AnookUserWidget', $this->widget_name, [
             'description' => "Show your anook profile in the sidebar."
-        ];
-        
-        parent::__construct(get_class(), $this->widget_name, $widget_options);
+        ]);
     }
     
     public function getData(array $widget_data)

@@ -10,8 +10,6 @@ trait Templates
 {
     // The path of the template
     public $templates_path;
-    // The initial name we were given
-    public $template_name;
     // The extension if we were to ever change it or use a custom template
     public $template_extension;
 
@@ -24,9 +22,8 @@ trait Templates
      */
     public function render($template_name, array $variables = [], array $options = [])
     {
-        $this->template_name = $template_name;
         // Generate the path of the template
-        $this->template_path = SURDAFT_ANOOK_DIRECTORY_PATH . "/views/" . str_replace(".", "/", $this->template_name);
+        $this->template_path = SURDAFT_ANOOK_DIRECTORY_PATH . "/views/" . str_replace(".", "/", $template_name);
 
         // incase our template is of a different type
         if (!empty($options['extension'])) {
