@@ -16,13 +16,9 @@ class AnookUserWidget extends BaseWidget
     // allow us to render template files
     use Templates;
     
-    // the name of the widget
-    const WIDGET_NAME = "Anook User Widget";
-    
-    // name of the widgets frontend template file
-    const TEMPLATE_NAME = "widgets.user";
-    // name of the backend template file for the widgets menu
-    const OPTIONS_TEMPLATE_NAME = "widget_options.user";
+    public $widget_name = "Anook User Widget";
+    public $template_name = "widgets.user";
+    public $options_template_name = "widget_options.user";
     
     /**
      * Defines the info to pass to wordpress about the widgets name
@@ -35,7 +31,7 @@ class AnookUserWidget extends BaseWidget
             'description' => "Show your anook profile in the sidebar."
         ];
         
-        parent::__construct(get_class(), self::WIDGET_NAME, $widget_options);
+        parent::__construct(get_class(), $this->widget_name, $widget_options);
     }
     
     public function getData(array $widget_data)
