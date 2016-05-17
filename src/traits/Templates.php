@@ -1,6 +1,7 @@
 <?php namespace surdaft\anook\traits;
 
 use surdaft\anook\exceptions\TemplateException;
+use surdaft\anook\helpers\Files;
 
 /**
  * Templates gives us the ability to render templates
@@ -38,41 +39,20 @@ trait Templates
             throw new TemplateException("Template file not found. {$this->templates_path}{$this->template_extension}");
         }
         
-        $cache_path = SURDAFT_ANOOK_DIRECTORY_PATH . "/cache/templates/{$formatted_template_name}{$this->template_extension}";
+        // open a new buffer to allow us to store the data in a variable
+        ob_start();
         
+        // extract the variables so they are available in the template
+        extract($variables);
+
+        // include the template file
+        include($this->template_path . $this->template_extension);
         
-        if (!empty($options['disable_cache'])) {
-            $use_cache = false;
-        } else {
-            $use_cache = true;
-            $use_cache &= file_exists($cache_path);
-            if ($use_cache) {
-                $use_cache &= filemtime($cache_path) > strtotime('1 hour ago');
-            }
-        }
+        // put the contents of the file into a variable
+        $template_html = ob_get_contents();
         
-        if ($use_cache) {
-            return file_get_contents($cache_path);
-        } else {
-            // open a new buffer to allow us to store the data in a variable
-            ob_start();
-            
-            // extract the variables so they are available in the template
-            extract($variables);
-    
-            // include the template file
-            include($this->template_path . $this->template_extension);
-            
-            // put the contents of the file into a variable
-            $template_html = ob_get_contents();
-            
-            // clear the output buffer without any output
-            ob_end_clean();
-            
-            if (empty($options['disable_cache'])) {
-                file_put_contents($cache_path, $template_html);
-            }
-        }
+        // clear the output buffer without any output
+        ob_end_clean();
 
         // return the html
         return $template_html;

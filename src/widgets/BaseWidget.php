@@ -47,9 +47,7 @@ class BaseWidget extends \WP_Widget implements WidgetInterface
      */
     public function form($widget_data)
     {
-        echo $this->render($this->options_template_name, $widget_data, [
-            'disable_cache' => true // we don't need caching on the admins end
-        ]);
+        echo $this->render($this->options_template_name, $widget_data);
     }
     
     /**
