@@ -2,7 +2,7 @@
 
 class Debug
 {
-    public static function printExit(...$data)
+    public static function dd(...$data)
     {
          echo '<pre>';
          foreach ($data as $data_item) {
