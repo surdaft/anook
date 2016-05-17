@@ -24,6 +24,9 @@ class Anook
         define('SURDAFT_ANOOK_API_VERSION', 'v1');
         // So we know what the plugin's base directory is
         define('SURDAFT_ANOOK_DIRECTORY_PATH', __DIR__);
+        define('SURDAFT_ANOOK_IMAGE_PATH', __DIR__ . '/images');
+        define('SURDAFT_ANOOK_CSS_PATH', __DIR__ . '/css');
+        define('SURDAFT_ANOOK_JS_PATH', __DIR__ . '/js');
         
         return $this;
     }
