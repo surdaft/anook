@@ -7,13 +7,13 @@
 class Request
 {
     private $code;
+    private $fresh = false; // if this is from a transient
     private $data;
     private $endpoint;
-    private $cached_item;
     private $curl_url;
     private $json;
     
-    public function __construct($api_request_json, $endpoint, $curl_url, $cached_item = false)
+    public function __construct($api_request_json, $endpoint, $curl_url)
     {
         $this->json = $api_request_json;
         
@@ -50,5 +50,11 @@ class Request
     public function code()
     {
         return $this->code;
+    }
+    
+    public function setFresh()
+    {
+        $this->fresh = true;
+        return $this;
     }
 }

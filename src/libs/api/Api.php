@@ -54,6 +54,15 @@ class Api
      */
     public function curl()
     {
+        /**
+         * Cache using wp transients, this will then hook into any caching plugins used by the user, as well
+         * as provide caching for those that do not have such things.
+         */
+        $transient_id = "surdaft/anook/{$this->endpoint}";
+        if (($request = get_transient($transient_id)) !== false) {
+            return $request;
+        }
+        
         $ch = curl_init($this->curl_url);
         curl_setopt_array($ch, [
             CURLOPT_FOLLOWLOCATION  => true,            // follow redirects
@@ -63,12 +72,18 @@ class Api
         $return = curl_exec($ch);
         
         if ($this->debug_request) {
-            Debug::printExit($return);
+            Debug::dd($return);
         }
         
         curl_close($ch);
         
-        return new Request($return, $this->endpoint, $this->curl_url);
+        $request = new Request($return, $this->endpoint, $this->curl_url);
+        set_transient($transient_id, $request, 12 * HOUR_IN_SECONDS);
+        
+        // set that it is fresh within the object -- cant hurt.
+        $request->setFresh();
+        
+        return $request;
     }
     
     public function header($header_key, $header_value)
@@ -100,5 +115,10 @@ class Api
     public static function getGame($game_id)
     {
         return self::query("game/{$game_id}")->curl();
+    }
+    
+    public static function flushTransient($endpoint)
+    {
+        return delete_transient("surdaft/anook/{$endpoint}");
     }
 }
