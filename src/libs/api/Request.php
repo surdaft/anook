@@ -24,9 +24,6 @@ class Request
         $this->endpoint = $endpoint;
         $this->curl_url = $curl_url;
         
-        // by default a requests cached_item param is false, as though it is a live request.
-        $this->cached_item = $cached_item;
-        
         return $this;
     }
     
