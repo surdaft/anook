@@ -1,5 +1,7 @@
 <div class="anook-widget user">
     <div class="top-logo">
-        <img src="#" height="30px" width="120px">
+        <?php print_r($anook_user); ?>
     </div>
 </div>
+
+<!-- Last updated: <?= date('Y-m-d H:i:s'); ?> -->
