@@ -4,8 +4,6 @@ use surdaft\anook\exceptions\WidgetException;
 use surdaft\anook\interfaces\WidgetInterface;
 use surdaft\anook\controllers\WidgetsController;
 
-use surdaft\anook\Debug;
-
 /**
  * This base widget extends the initial Wordpress widget that
  * is required.

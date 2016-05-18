@@ -38,7 +38,7 @@ class AnookUserWidget extends BaseWidget
             throw new WidgetException("Username required for Anook user widget.");
         }
         
-        $anook_user = Api::getUser($widget_data['username']);
+        $anook_user = Api::getUser($widget_data['username'])->data()[0];
         
         return compact('anook_user');
     }
