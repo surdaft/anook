@@ -2,6 +2,7 @@
 
 use surdaft\anook\libs\api\Request;
 use surdaft\anook\Debug;
+use surdaft\anook\helpers\Files;
 
 class Api
 {
@@ -60,6 +61,7 @@ class Api
          */
         $transient_id = "surdaft/anook/{$this->endpoint}";
         if (($request = get_transient($transient_id)) !== false) {
+            // if any images we need to update them here
             return $request;
         }
         
@@ -75,9 +77,15 @@ class Api
             Debug::dd($return);
         }
         
+        $decoded_return = json_decode($return);
+        
         curl_close($ch);
         
-        $request = new Request($return, $this->endpoint, $this->curl_url);
+        // cache image
+        $decoded_return->data[0]->picture = static::cacheImage($decoded_return->data[0]->picture);
+        
+        
+        $request = new Request($decoded_return, $this->endpoint, $this->curl_url, $return);
         set_transient($transient_id, $request, 12 * HOUR_IN_SECONDS);
         
         // set that it is fresh within the object -- cant hurt.
@@ -120,5 +128,19 @@ class Api
     public static function flushTransient($endpoint)
     {
         return delete_transient("surdaft/anook/{$endpoint}");
+    }
+    
+    public static function cacheImage($image_url)
+    {
+        # Ensure the directory exists
+        Files::mkdir('images/temp');
+        
+        # Generate a filename using the url - this is not cryptographically secure but that doesn't matter :P
+        $filename = md5($image_url);
+        $filepath = SURDAFT_ANOOK_DIRECTORY_PATH . "/images/temp/{$filename}.jpg";
+        
+        $file = file_put_contents($filepath, file_get_contents($image_url));
+        
+        return plugins_url("anook/images/temp/{$filename}.jpg");
     }
 }

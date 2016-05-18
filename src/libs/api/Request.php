@@ -13,11 +13,11 @@ class Request
     private $curl_url;
     private $json;
     
-    public function __construct($api_request_json, $endpoint, $curl_url)
+    public function __construct($decoded_data, $endpoint, $curl_url, $json_data)
     {
-        $this->json = $api_request_json;
+        $this->json = $json_data;
         
-        $request = json_decode($api_request_json);
+        $request = $decoded_data;
         
         $this->code = $request->code;
         $this->data = $request->data;
