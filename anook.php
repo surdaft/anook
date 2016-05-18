@@ -24,9 +24,9 @@ class Anook
         define('SURDAFT_ANOOK_API_VERSION', 'v1');
         // So we know what the plugin's base directory is
         define('SURDAFT_ANOOK_DIRECTORY_PATH', __DIR__);
-        define('SURDAFT_ANOOK_IMAGE_PATH', __DIR__ . '/images');
-        define('SURDAFT_ANOOK_CSS_PATH', __DIR__ . '/css');
-        define('SURDAFT_ANOOK_JS_PATH', __DIR__ . '/js');
+        
+        $this->initialiseHooks();
+        $this->enqueueAssets();
         
         return $this;
     }
@@ -44,7 +44,20 @@ class Anook
         
         return $this;
     }
+    
+    public function enqueueAssets()
+    {
+        if (is_admin()) {
+            add_action('wp_enqueue_scripts', function() {
+                wp_enqueue_style('surdaft/anook', plugins_url('anook/css/anook-admin.css'));
+            }, 15);
+        } else {
+            add_action('wp_enqueue_scripts', function() {
+                wp_enqueue_style('surdaft/anook', plugins_url('anook/css/anook.css'));
+            }, 15);
+        }
+    }
 }
 
 // Init
-$anook = (new Anook())->initialiseHooks();
+$anook = new Anook();
