@@ -1,0 +1,53 @@
+.anook {
+  font-family: 'Arial'; }
+  .anook a {
+    color: #3c3c3c;
+    text-decoration: none; }
+    .anook a:hover {
+      background: whitesmoke; }
+
+.anook-widget {
+  background: #3c3c3c;
+  color: white;
+  font-family: 'Lucida Grande', Arial, sans-serif;
+  font-size: 14px;
+  letter-spacing: .5px;
+  max-width: 270px;
+  margin: 0 auto; }
+  .anook-widget .top-logo {
+    height: auto;
+    overflow: hidden;
+    padding: 10px 20px;
+    font-size: 18px;
+    background: #323232;
+    line-height: 45px; }
+    .anook-widget .top-logo img {
+      height: 45px;
+      float: right; }
+  .anook-widget .profile-picture {
+    text-align: center; }
+    .anook-widget .profile-picture img {
+      border-radius: 4px;
+      margin: 20px; }
+  .anook-widget .profile-information {
+    margin-bottom: 15px; }
+    .anook-widget .profile-information span {
+      display: block;
+      width: 100%;
+      color: gainsboro;
+      text-align: center;
+      line-height: 30px; }
+      .anook-widget .profile-information span.username {
+        font-size: 18px;
+        color: #f0f0f0; }
+  .anook-widget .button {
+    background: #282828;
+    line-height: 30px;
+    padding: 15px;
+    text-align: center;
+    color: white;
+    transition: background .2s linear; }
+    .anook-widget .button.follow-button {
+      display: block; }
+    .anook-widget .button:hover {
+      background: #323232; }
