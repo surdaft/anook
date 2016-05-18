@@ -18,8 +18,6 @@ class Files
         $path_array = explode('/', $path);
         
         $current_directory = SURDAFT_ANOOK_DIRECTORY_PATH;
-        
-        \surdaft\anook\Debug::dd(file_exists($current_directory), $current_directory);
         foreach ($path_array as $folder) {
             $current_directory .= "/{$folder}";
             if (!file_exists($current_directory)) {
